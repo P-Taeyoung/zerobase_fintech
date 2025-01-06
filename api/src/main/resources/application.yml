@@ -1,0 +1,10 @@
+spring:
+  profiles:
+    include:
+      - domain
+
+logging:
+  level:
+    org.springframework.web: DEBUG
+    org.springframework.boot: DEBUG
+    com.example: DEBUG
