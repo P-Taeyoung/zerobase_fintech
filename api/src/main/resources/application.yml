@@ -6,8 +6,3 @@ spring:
     pathmatch:
       matching-strategy: ant_path_matcher
 
-logging:
-  level:
-    org.springframework.web: DEBUG
-    org.springframework.boot: DEBUG
-    com.example: DEBUG
