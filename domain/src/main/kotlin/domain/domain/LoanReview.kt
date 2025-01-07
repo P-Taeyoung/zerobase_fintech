@@ -6,7 +6,7 @@ import javax.persistence.*
 @Table(name = "LOAN_REVIEW")
 class LoanReview (
     @Column(name = "usr_key")
-    val user: String,
+    val userKey: String,
 
     @Column(name = "loan_lmt_amt")
     val loanLimitedAmount: Long,
