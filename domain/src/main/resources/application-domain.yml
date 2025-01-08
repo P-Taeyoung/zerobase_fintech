@@ -12,5 +12,5 @@ spring:
     username: fintech
     password: fintech
   redis:
-    host: fintech-redis
+    host: localhost
     port: 6379
