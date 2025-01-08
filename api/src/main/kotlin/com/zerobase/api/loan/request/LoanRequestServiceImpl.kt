@@ -2,6 +2,8 @@ package com.zerobase.api.loan.request
 
 import com.zerobase.api.loan.GenerateKey
 import com.zerobase.api.loan.encrypt.EncryptComponent
+import com.zerobase.com.zerobase.kafka.enum.KafkaTopic
+import com.zerobase.com.zerobase.kafka.producer.LoanRequestSender
 import com.zerobase.domain.repository.UserInfoRepository
 import org.springframework.stereotype.Service
 
@@ -9,7 +11,8 @@ import org.springframework.stereotype.Service
 class LoanRequestServiceImpl(
     private val generateKey: GenerateKey,
     private val userInfoRepository: UserInfoRepository,
-    private val encryptComponent: EncryptComponent
+    private val encryptComponent: EncryptComponent,
+    private val loanRequestSender: LoanRequestSender
 ): LoanRequestService {
     override fun loanRequestMain(
         loanRequestInputDto: LoanRequestDto.LoanRequestInputDto
@@ -34,6 +37,9 @@ class LoanRequestServiceImpl(
 
 
     override fun loanRequestReview(userInfoDto: UserInfoDto) {
-        TODO("Not yet implemented")
+        loanRequestSender.sendMessage(
+            KafkaTopic.LOAN_REQUEST,
+            userInfoDto.toLoanRequestKafkaDto()
+        )
     }
 }
